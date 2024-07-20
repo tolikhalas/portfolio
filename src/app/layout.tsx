@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { Inter } from "next/font/google";
+import { ThemeProvider } from "./provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
   ],
   applicationName: "Anatolii Halas Portfolio",
   category: "portfolio",
-  keywords: ["dev", "develope", "development", "IT", "programming"]
+  keywords: ["dev", "develop", "development", "IT", "programming"],
 };
 
 export default function RootLayout({
@@ -27,7 +28,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${inter.className} scroll-smooth`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
